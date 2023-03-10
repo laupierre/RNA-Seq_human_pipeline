@@ -1,6 +1,6 @@
-####### This is the working place for developing a RNA-Seq pipeline based on singularity
+### This is the working place for developing a RNA-Seq pipeline based on singularity
 
-2- Human RNA-Seq: PE Illumina sequencing, in reverse strand orientation
+### 2- Human RNA-Seq: PE Illumina sequencing, in reverse strand orientation
 
 This is the development version deposited for the production team: the current version is v0.0.1_dev
 
