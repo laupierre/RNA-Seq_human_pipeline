@@ -105,7 +105,7 @@ echo "BBMap finished on ${AFTER}" >> log.out
 if [ "$COLOR" = "star" ]; then
 echo "Starting alignment with STAR ..." >> log.out
 
-cp -r $CONTAINER/human_star_index .
+cp -r $INDEX/human_star_index .
 
 var=(`ls *R1*.fastq.gz`)
 
@@ -146,11 +146,12 @@ echo "Starting counting with featureCounts ..." >> log.out
 cd star_results
 files=`ls -d *bam | xargs -n1000`
 
-wget 
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43.transcripts.fa.gz
+gunzip gencode.v43.transcripts.fa.gz
 
 apptainer exec $CONTAINER/featurecounts.sif /bin/bash -c \
 "featureCounts -B -C -s 2 -p --countReadPairs -T $CPUS -t exon -g gene_id --extraAttributes gene_name,gene_type \
--a /root/gtf/gencode.vM32.annotation.gtf \
+-a gencode.v43.transcripts.fa \
 -o subread.counts.txt $files" || { 
 echo "featureCounts has an error. Pipeline terminated" >> log.out
 exit 1
@@ -170,8 +171,8 @@ echo "Starting RSeQC and sambamba ..." >> log.out
 mkdir rseqc_results
 cd rseqc_results
 
-wget https://sourceforge.net/projects/rseqc/files/BED/Mouse_Mus_musculus/GRCm39_GENCODE_VM27.bed.gz
-gunzip GRCm39_GENCODE_VM27.bed.gz
+wget https://sourceforge.net/projects/rseqc/files/BED/Human_Homo_sapiens/hg38_GENCODE_V42_Comprehensive.bed.gz
+gunzip hg38_GENCODE_V42_Comprehensive.bed.gz
 
 var=(`ls ../star_results/*bam`)
 
@@ -192,7 +193,7 @@ var=(`ls *.bam`)
 	do
 	prefix=`echo ${i%%.bam}`
 	apptainer exec $CONTAINER/rseqc.sif /bin/bash -c \
-	"infer_experiment.py -r GRCm39_GENCODE_VM27.bed -i $i 1> rseqc.$prefix.infer_experiment.txt" || { 
+	"infer_experiment.py -r hg38_GENCODE_V42_Comprehensive.bed -i $i 1> rseqc.$prefix.infer_experiment.txt" || { 
    	echo "RSeQC has an error. Pipeline terminated" >> log.out
     	exit 1
 	}
