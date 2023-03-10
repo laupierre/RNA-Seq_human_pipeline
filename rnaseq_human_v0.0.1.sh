@@ -24,7 +24,7 @@ while true; do
         shift; # The arg is next in position args
         COLOR=$1
         [[ ! $COLOR =~ ^(star|kallisto|salmon)$ ]] && {
-            echo "Incorrect options. Please provide a correct method: star, kallisto or salmon"
+            echo "Incorrect options. Please provide a correct method: star or salmon"
             exit 1
         }
         ;;
