@@ -17,5 +17,5 @@ R version 4.2.2 Patched
 
 The Singularity containers and human indexes are located in: /projects/ncrrbt_share_la/dev_pipe2/
 
-See human_indexes for details on how the different indexes are made.
+See human_indexes for details on how the STAR and salmon indexes are made.
 
