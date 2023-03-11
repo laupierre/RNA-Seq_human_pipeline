@@ -146,12 +146,13 @@ echo "Starting counting with featureCounts ..." >> log.out
 cd star_results
 files=`ls -d *bam | xargs -n1000`
 
-wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43.transcripts.fa.gz
-gunzip gencode.v43.transcripts.fa.gz
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43.annotation.gtf.gz
+gunzip gencode.v43.annotation.gtf.gz
+
 
 apptainer exec $CONTAINER/featurecounts.sif /bin/bash -c \
 "featureCounts -B -C -s 2 -p --countReadPairs -T $CPUS -t exon -g gene_id --extraAttributes gene_name,gene_type \
--a gencode.v43.transcripts.fa \
+-a gencode.v43.annotation.gtf \
 -o subread.counts.txt $files" || { 
 echo "featureCounts has an error. Pipeline terminated" >> log.out
 exit 1
