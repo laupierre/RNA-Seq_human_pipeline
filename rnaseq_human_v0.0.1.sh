@@ -205,4 +205,80 @@ AFTER=`date`
 echo "RSeQC and sambamba finished on ${AFTER}" >> log.out
 
 fi
+
+
+
+
+######################################
+#### salmon analysis in automatic mode (should fall back on ISR mode)
+if [ "$COLOR" = "salmon" ]; then
+echo "Starting salmon pseudo-counting ..." >> log.out
+
+cp -r $INDEX/human_salmon_index .
+
+var=(`ls *_R1*.fastq.gz`)
+
+	for i in ${var[@]}
+	do
+	read2=`echo ${i} | sed 's/R1/R2/g'`
+	prefix=`echo ${i%%_R1*}`
+	
+	apptainer exec $CONTAINER/salmon.sif /bin/bash -c \
+   	"salmon quant -i human_salmon_index -p $CPUS -l A --validateMappings -o salmon.${prefix} -1 $i -2 $read2"
+	
+	## Put this inside the loop
+	if [ $? -eq 0 ]
+	then
+    	echo "salmon processed sample ${prefix}" >> log.out
+	else
+	echo "salmon failed on sample ${prefix}. Pipeline terminated"  >> log.out
+	exit 1
+	fi
+	done
+
+mkdir salmon_results
+mv salmon.IIT* salmon_results
+
+AFTER=`date`
+echo "salmon finished on ${AFTER}" >> log.out
+
+fi
+####
+
+
+
+
+####################
+#### FastQC analysis
+echo "Starting FastQC ..." >> log.out
+
+files=`ls *fastq.gz | xargs -n1000`
+mkdir fastqc_results
+
+apptainer exec $CONTAINER/fastqc.sif /bin/bash -c \
+	"fastqc -t $CPUS -o fastqc_results $files"
+
+AFTER=`date`
+echo "FastQC finished on ${AFTER}" >> log.out
+####
+
+
+
+
+####################
+#### MultiQC analysis
+echo "Starting MultiQC ..." >> log.out
+
+if [ "$COLOR" = "star" ]; then
+apptainer exec $CONTAINER/multiqc.sif /bin/bash -c \
+"multiqc -f -n multiqc_report_rnaseq \
+-m featureCounts $PBS_O_WORKDIR/projects/star_results/*summary \
+-m star $PBS_O_WORKDIR/projects/star_results/*Log.final.out \
+-m sambamba $PBS_O_WORKDIR/projects/rseqc_results/markdup.star.IIT*.log \
+-m r
+
+
+
+
+
 ####
