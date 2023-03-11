@@ -3,7 +3,7 @@
 ### 2- Human RNA-Seq: PE Illumina sequencing, in reverse strand orientation
 
 This is the development version deposited for the production team: the current version is v0.0.1_dev  
-There are two methods available: STAR and salmon  
+There are two methods available for quantification: STAR and salmon  
 
 The singularity images are available for:  
 BBMap version 39.01  
