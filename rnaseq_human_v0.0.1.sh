@@ -302,7 +302,18 @@ apptainer exec $CONTAINER/R.sif /bin/bash -c \
 fi
 
 
+if [ "$COLOR" = "salmon" ]; then
+cd ..
+cp $INDEX/salmon_wrap.R .
+cp $INDEX/gencode.v43.annotation.txt .
 
+apptainer exec $CONTAINER/R.sif /bin/bash -c \
+"Rscript salmon_wrap.R"
+fi
 
+#################
+#### Exit message
+echo "The RNA-Seq pipeline was completed on `date`. Please check the files that were produced in the output folder!" >> ./output/log.out
+exit 0;
+#################
 
-####
