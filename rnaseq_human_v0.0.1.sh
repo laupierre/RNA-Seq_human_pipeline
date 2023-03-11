@@ -57,7 +57,7 @@ echo "Starting ribosomal and mitochondrial filtering with BBMap ..." >> log.out
 cp /projects/ncrrbt_share_la/dev_pipe2/human_ribosomal.fa .
 mkdir projects
 
-var=(`ls *R1*.fastq.gz`)
+var=(`ls *_R1*.fastq.gz`)
 
 	for i in ${var[@]}
 	do
@@ -107,7 +107,7 @@ echo "Starting alignment with STAR ..." >> log.out
 
 cp -r $INDEX/human_star_index .
 
-var=(`ls *R1*.fastq.gz`)
+var=(`ls *_R1*.fastq.gz`)
 
 	for i in ${var[@]}
 	do
