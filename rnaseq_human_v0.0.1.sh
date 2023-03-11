@@ -133,7 +133,7 @@ var=(`ls *_R1*.fastq.gz`)
 	
 
 mkdir star_results
-mv star.IIT* star_results
+mv star.* star_results
 
 AFTER=`date`
 echo "STAR finished on ${AFTER}" >> log.out
