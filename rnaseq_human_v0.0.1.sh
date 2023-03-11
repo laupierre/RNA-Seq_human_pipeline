@@ -289,6 +289,20 @@ fi
 
 
 
+###########################
+### Write results to output
+
+if [ "$COLOR" = "star" ]; then
+cd ..
+cp $INDEX/star_wrap.R .
+cp $INDEX/gencode.v43.annotation.txt .
+
+apptainer exec $CONTAINER/R.sif /bin/bash -c \
+"Rscript star_wrap.R"
+fi
+
+
+
 
 
 ####
