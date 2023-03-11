@@ -16,7 +16,7 @@ sambamba version 0.8.2
 STAR version 2.7.10b  
 R version 4.2.2 Patched  
 
-The Singularity containers are in /projects/ncrrbt_share_la/dev_pipe and are the same used for mouse RNA-Seq.  
+The Singularity containers are in /projects/ncrrbt_share_la/dev_pipe and are the same used for the mouse RNA-Seq.  
 The human indexes are located in: /projects/ncrrbt_share_la/dev_pipe2/  
 See human_indexes for details on how the STAR and salmon indexes are made.
 
