@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#### This is the RNA-Seq for the mouse species (v.0.0.1dev)
+#### This is the RNA-Seq for the human species (v.0.0.1dev)
 
 # clean the log.out file
 if [ -f "log.out" ] ; then
