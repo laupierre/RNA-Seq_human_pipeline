@@ -44,7 +44,7 @@ INDEX=/projects/ncrrbt_share_la/dev_pipe2
 CPUS=12
 
 #### Start message
-echo "The RNA-Seq pipeline (v.0.1_dev) is for the human species and the $COLOR method was chosen" >> log.out
+echo "The RNA-Seq pipeline (v.0.0.1_dev) is for the human species and the $COLOR method was chosen" >> log.out
 echo "Starting the RNA-Seq pipeline on `date`" >> log.out
 ##################
 
