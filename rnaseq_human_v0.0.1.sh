@@ -61,7 +61,7 @@ var=(`ls *R1*.fastq.gz`)
 
 	for i in ${var[@]}
 	do
-	read2=`echo ${i} | sed 's/R1/R2/g'`
+	read2=`echo ${i} | sed 's/_R1/_R2/g'`
 	prefix=`echo ${i%%_R1*}`
 	
 	ls -l $prefix\_*filtered.fastq.gz > /dev/null
@@ -111,7 +111,7 @@ var=(`ls *R1*.fastq.gz`)
 
 	for i in ${var[@]}
 	do
-	read2=`echo ${i} | sed 's/R1/R2/g'`
+	read2=`echo ${i} | sed 's/_R1/_R2/g'`
 	prefix=`echo ${i%%_R1*}`
 	
 	apptainer exec $CONTAINER/star.sif /bin/bash -c \
