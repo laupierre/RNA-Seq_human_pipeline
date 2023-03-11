@@ -279,7 +279,4 @@ apptainer exec $CONTAINER/multiqc.sif /bin/bash -c \
 -m r
 
 
-
-
-
 ####
