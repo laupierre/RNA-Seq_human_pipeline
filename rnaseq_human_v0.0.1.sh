@@ -276,7 +276,19 @@ apptainer exec $CONTAINER/multiqc.sif /bin/bash -c \
 -m featureCounts $PBS_O_WORKDIR/projects/star_results/*summary \
 -m star $PBS_O_WORKDIR/projects/star_results/*Log.final.out \
 -m sambamba $PBS_O_WORKDIR/projects/rseqc_results/markdup.star.IIT*.log \
--m r
+-m rseqc $PBS_O_WORKDIR/projects/rseqc_results/*infer_experiment.txt \
+-m fastqc $PBS_O_WORKDIR/projects/fastqc_results/*zip"
+fi
+
+if [ "$COLOR" = "salmon" ]; then
+apptainer exec $CONTAINER/multiqc.sif /bin/bash -c \
+"multiqc -f -n multiqc_report_rnaseq \
+-m salmon $PBS_O_WORKDIR/projects/salmon_results/* \
+-m fastqc $PBS_O_WORKDIR/projects/fastqc_results/*zip"
+fi
+
+
+
 
 
 ####
