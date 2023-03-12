@@ -288,6 +288,13 @@ apptainer exec $CONTAINER/multiqc.sif /bin/bash -c \
 fi
 
 
+mkdir ../output
+cp multiqc_report_rnaseq.html ../output
+
+AFTER=`date`
+echo "MultiQC finished on ${AFTER}" >> log.out
+####
+
 
 ###########################
 ### Write results to output
