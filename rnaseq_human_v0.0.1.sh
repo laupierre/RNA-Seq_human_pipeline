@@ -238,7 +238,7 @@ var=(`ls *_R1*.fastq.gz`)
 	done
 
 mkdir salmon_results
-mv salmon.IIT* salmon_results
+mv salmon.* salmon_results
 
 AFTER=`date`
 echo "salmon finished on ${AFTER}" >> log.out
