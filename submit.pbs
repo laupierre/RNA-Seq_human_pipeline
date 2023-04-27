@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -l walltime=100:00:00
+#PBS -l select=1:ncpus=12
+#PBS -q workq
+#PBS -N rnaseq_human
+
+cd $PBS_O_WORKDIR
+
+cp /projects/ncrrbt_share_la/dev_pipe2/rnaseq_human_v0.0.1.sh .
+chmod +x rnaseq_human_v0.0.1.sh
+
+./rnaseq_human_v0.0.1.sh --method=star  
