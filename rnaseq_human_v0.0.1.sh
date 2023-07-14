@@ -179,7 +179,7 @@ var=(`ls ../star_results/*bam`)
 
 	for i in ${var[@]}
 	do
-	prefix=`echo ${i%%_S*}`
+	prefix=`echo ${i%%_S[0-9]*}`
 	prefix2=`echo ${prefix##*/}`
 	apptainer exec $CONTAINER/sambamba.sif /bin/bash -c \
 	"sambamba markdup -t $CPUS $i $prefix2.markdup.bam > markdup.$prefix2.log 2>&1" || { 
