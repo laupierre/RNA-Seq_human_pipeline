@@ -89,6 +89,8 @@ for i in ${var[@]}
 done
 
 
+## fastp analysis
+echo "Starting read trimming with fastp ..." >> log.out
 
 var=(`ls *_R1_001.filtered.fastq`)
 
