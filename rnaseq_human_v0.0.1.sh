@@ -59,7 +59,7 @@ mkdir projects
 
 var=(`ls *_R1*.fastq.gz`)
 
-	for i in ${var[@]}
+for i in ${var[@]}
 	do
 	read2=`echo ${i} | sed 's/_R1/_R2/g'`
 	prefix=`echo ${i%%_R1*}`
@@ -84,11 +84,28 @@ var=(`ls *_R1*.fastq.gz`)
 	fi
 	fi
 	
-	done
-	
+done
 
-	ls *filtered.fastq | parallel -j 2 pigz -p 6 {}
-	mv *filtered.fastq.gz projects
+
+
+var=(`ls *_R1_001.filtered.fastq.gz`)
+
+for i in ${var[@]}
+do
+temp=`echo ${i%%_R1_001.filtered.fastq}`
+
+fastp \
+--in1 $i \
+--in2 $temp\_R2_001.filtered.fastq \
+--out1 $temp\_R1_001.ready.fastq \
+--out2 $temp\_R2_001.ready.fastq \
+--overrepresentation_analysis --trim_poly_x --html $temp.fastp.html --adapter_sequence CTGTCTCTTATA \
+--thread $CPUS --low_complexity_filter --complexity_threshold 30
+done
+
+
+ls *ready.fastq | parallel -j 2 pigz -p 6 {}
+mv *ready.fastq.gz projects
 
 cd projects
 mv ../log.out .
@@ -109,7 +126,7 @@ cp -r $INDEX/human_star_index .
 
 var=(`ls *_R1*.fastq.gz`)
 
-	for i in ${var[@]}
+for i in ${var[@]}
 	do
 	read2=`echo ${i} | sed 's/_R1/_R2/g'`
 	prefix=`echo ${i%%_R1*}`
@@ -129,7 +146,7 @@ var=(`ls *_R1*.fastq.gz`)
 	echo "STAR failed on sample ${prefix}. Pipeline terminated"  >> log.out
 	exit 1
 	fi
-	done
+done
 	
 
 mkdir star_results
