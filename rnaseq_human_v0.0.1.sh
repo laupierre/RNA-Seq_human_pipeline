@@ -103,6 +103,15 @@ fastp \
 --out2 $temp\_R2_001.ready.fastq \
 --overrepresentation_analysis --trim_poly_x --html $temp.fastp.html --adapter_sequence CTGTCTCTTATA \
 --thread $CPUS --low_complexity_filter --complexity_threshold 30
+
+	## Put this inside the loop
+	if [ $? -eq 0 ]
+	then
+    	echo "fastp processed sample ${prefix}" >> log.out
+	else
+	echo "fastp failed on sample ${prefix}. Pipeline terminated"  >> log.out
+	exit 1
+	fi
 done
 
 
