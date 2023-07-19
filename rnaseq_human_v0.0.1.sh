@@ -120,6 +120,7 @@ done
 
 ls *ready.fastq | parallel -j 4 pigz -p 5 {}
 mv *ready.fastq.gz projects
+rm *filtered.fastq
 
 cd projects
 mv ../log.out .
