@@ -90,7 +90,7 @@ done
 
 
 
-var=(`ls *_R1_001.filtered.fastq.gz`)
+var=(`ls *_R1_001.filtered.fastq`)
 
 for i in ${var[@]}
 do
