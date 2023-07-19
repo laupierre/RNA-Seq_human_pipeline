@@ -155,7 +155,7 @@ done
     
 mystar () {
 	apptainer exec $1/star.sif /bin/bash -c \
-	"STAR --genomeDir mouse_star_index --runThreadN $5 \
+	"STAR --genomeDir human_star_index --runThreadN $5 \
 	--readFilesIn $2 $3 \
 	--outSAMtype BAM Unsorted \
 	--readFilesCommand zcat \
@@ -173,8 +173,7 @@ mystar () {
 export -f mystar
     
 cat parameters.txt | parallel -j 2 --delay 0.1 --colsep '\t' mystar
-
-rm parameters.txt
+# rm parameters.txt
 
 
 mkdir star_results
