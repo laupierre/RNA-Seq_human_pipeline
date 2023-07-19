@@ -131,13 +131,13 @@ cp -r $INDEX/human_star_index .
 
 var=(`ls *_R1*.fastq.gz`)
 
-	for i in ${var[@]}
+for i in ${var[@]}
 	do
 	read2=`echo ${i} | sed 's/R1/R2/g'`
 	prefix=`echo ${i%%_R1*}`
 	cpus=$(($CPUS/2))
-  echo -e $CONTAINER'\t'$i'\t'$read2'\t'$prefix'\t'$cpus >> parameters.txt 
-  done
+  	echo -e $CONTAINER'\t'$i'\t'$read2'\t'$prefix'\t'$cpus >> parameters.txt 
+done
 
     
 mystar () {
