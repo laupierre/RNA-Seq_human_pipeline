@@ -106,7 +106,7 @@ fastp \
 done
 
 
-ls *ready.fastq | parallel -j 2 pigz -p 6 {}
+ls *ready.fastq | parallel -j 4 pigz -p 5 {}
 mv *ready.fastq.gz projects
 
 cd projects
