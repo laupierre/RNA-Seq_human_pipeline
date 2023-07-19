@@ -98,13 +98,14 @@ for i in ${var[@]}
 do
 temp=`echo ${i%%_R1_001.filtered.fastq}`
 
-fastp \
+apptainer exec $CONTAINER/fastp.sif /bin/bash -c \
+"fastp \
 --in1 $i \
 --in2 $temp\_R2_001.filtered.fastq \
 --out1 $temp\_R1_001.ready.fastq \
 --out2 $temp\_R2_001.ready.fastq \
 --overrepresentation_analysis --trim_poly_x --html $temp.fastp.html --adapter_sequence CTGTCTCTTATA \
---thread $CPUS --low_complexity_filter --complexity_threshold 30
+--thread $CPUS --low_complexity_filter --complexity_threshold 30"
 
 	## Put this inside the loop
 	if [ $? -eq 0 ]
