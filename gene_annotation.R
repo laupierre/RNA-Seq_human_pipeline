@@ -29,6 +29,7 @@ res$chromosome_name <- paste ("chr", res$chromosome_name, sep="")
 my_obj <- merge (my_obj, res, by.x="gene_id", by.y="ensembl_gene_id_version", all.x=TRUE)
 dim (my_obj)
 # 62703
+# 252913
 
 transcripts_num <- my_obj %>% group_by (gene_id) %>% summarise (transcripts_number= n ())
 
