@@ -126,7 +126,7 @@ cd projects
 mv ../log.out .
 
 AFTER=`date`
-echo "BBMap finished on ${AFTER}" >> log.out
+echo "BBMap and fastp finished on ${AFTER}" >> log.out
 ####
 
 
