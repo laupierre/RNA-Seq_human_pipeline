@@ -18,6 +18,8 @@ length (intersect (a$Geneid, anno$gene_id))
 
 # remove RNAs
 a <- a[grep ("miRNA|Mt_tRNA|Mt_rRNA|rRNA|snRNA|snoRNA|scRNA|sRNA|misc_RNA|scaRNA|ribozyme|IG_|TR_", a$gene_type, invert=TRUE), ]
+# remove Y paralogs
+a <- a[grep ("PAR_Y", a$Geneid, invert=TRUE), ]
 colnames (a) <- gsub ("_S[0-9]+.*", "", colnames (a)) 
 colnames (a) <- gsub (".*IIT_", "", colnames (a))
 
