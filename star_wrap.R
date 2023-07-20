@@ -30,4 +30,3 @@ write.xlsx (a, "./output/star_gene_raw_counts.xlsx", rowNames=F)
 
 
 
-
