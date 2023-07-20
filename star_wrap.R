@@ -27,3 +27,7 @@ colnames (a) [colnames (a) == "gene_name.x"] <- "gene_name"
 colnames (a) [colnames (a) == "gene_type.x"] <- "gene_type"
   
 write.xlsx (a, "./output/star_gene_raw_counts.xlsx", rowNames=F)
+
+
+
+
