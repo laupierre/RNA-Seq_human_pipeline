@@ -190,6 +190,7 @@ echo "Starting counting with featureCounts ..." >> log.out
 cd star_results
 files=`ls -d *bam | xargs -n1000`
 
+# gencode annotation
 wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43.annotation.gtf.gz
 gunzip gencode.v43.annotation.gtf.gz
 
