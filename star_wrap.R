@@ -5,7 +5,7 @@ library (ggplot2)
 system ("mkdir ./output")
 system ("cp ./projects/log.out ./output")
 
-anno <- read.delim ("gencode.v43.annotation.txt")
+anno <- read.delim ("gencode.v44.annotation.txt")
 anno <- anno[ ,grep ("transcript_id", colnames (anno), invert=TRUE)]
 anno <- unique (anno)
 dim (anno)
