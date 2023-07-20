@@ -1,6 +1,7 @@
 library(rtracklayer)
 library(biomaRt)
 
+# hg38 based
 system ("wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43.annotation.gtf.gz")
 
 my_obj <- import("gencode.v43.annotation.gtf.gz")
