@@ -8,7 +8,7 @@ system ("mkdir ./output")
 system ("cp ./projects/log.out ./output")
 
 
-tx2gene <- read.delim ("gencode.v43.annotation.txt")
+tx2gene <- read.delim ("gencode.v44.annotation.txt")
 tx2gene <- tx2gene[ ,c("transcript_id", "gene_id")]
 colnames (tx2gene) <- c("TXNAME", "GENEID")
 
