@@ -46,7 +46,7 @@ CPULOWS=14
 
 
 #### Start message
-echo "The RNA-Seq pipeline (v.0.0.1_dev) is for the human species and the $COLOR method was chosen" >> log.out
+echo "The RNA-Seq pipeline (v.0.0.2_dev) is for the human species and the $COLOR method was chosen" >> log.out
 echo "Starting the RNA-Seq pipeline on `date`" >> log.out
 ##################
 
