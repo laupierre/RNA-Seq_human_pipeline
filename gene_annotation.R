@@ -1,5 +1,6 @@
 library(rtracklayer)
 library(biomaRt)
+library (dplyr)
 
 # hg38 based
 system ("wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43.annotation.gtf.gz")
@@ -29,4 +30,13 @@ my_obj <- merge (my_obj, res, by.x="gene_id", by.y="ensembl_gene_id_version", al
 dim (my_obj)
 # 62703
 
+transcripts_num <- my_obj %>% group_by (gene_id) %>% summarise (transcripts_number= n ())
+
+my_obj <- merge (my_obj, transcripts_num, by= "gene_id", all.x=TRUE)
+my_obj <- my_obj[ ,c(1:10,12,11)]
+head (my_obj)
+
 write.table (my_obj, "gencode.v43.annotation.txt", sep="\t", quote=F, row.names=F)
+
+
+
