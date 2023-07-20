@@ -6,7 +6,7 @@
 
 cd $PBS_O_WORKDIR
 
-cp /projects/ncrrbt_share_la/dev_pipe2/rnaseq_human_v0.0.1.sh .
-chmod +x rnaseq_human_v0.0.1.sh
+cp /projects/ncrrbt_share_la/dev_pipe2/rnaseq_human_v0.0.2.sh .
+chmod +x rnaseq_human_v0.0.2.sh
 
-./rnaseq_human_v0.0.1.sh --method=star  
+./rnaseq_human_v0.0.2.sh --method=star  
