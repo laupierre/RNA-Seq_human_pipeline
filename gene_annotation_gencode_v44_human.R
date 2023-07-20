@@ -12,7 +12,7 @@ my_obj <- my_obj[ ,c("gene_id", "transcript_id", "gene_type", "gene_name", "hgnc
 
 values <- unique (my_obj$gene_id)
 length (values)
-# 62703
+# 62700
 
 ensembl <- useEnsembl(biomart = 'genes', 
                        dataset = 'hsapiens_gene_ensembl',
@@ -22,14 +22,13 @@ res <- getBM(attributes = c('ensembl_gene_id_version', 'external_gene_name', 'ch
              filters = 'ensembl_gene_id_version',
              values = values, mart = ensembl)      
 dim (res)
-# 62656
+# 62700
 
 res$chromosome_name <- paste ("chr", res$chromosome_name, sep="")
 
 my_obj <- merge (my_obj, res, by.x="gene_id", by.y="ensembl_gene_id_version", all.x=TRUE)
 dim (my_obj)
-# 62703
-# 252913
+# 252835
 
 transcripts_num <- my_obj %>% group_by (gene_id) %>% summarise (transcripts_number= n ())
 
