@@ -110,9 +110,9 @@ apptainer exec $CONTAINER/fastp.sif /bin/bash -c \
 	## Put this inside the loop
 	if [ $? -eq 0 ]
 	then
-    	echo "fastp processed sample ${prefix}" >> log.out
+    	echo "fastp processed sample ${temp}" >> log.out
 	else
-	echo "fastp failed on sample ${prefix}. Pipeline terminated"  >> log.out
+	echo "fastp failed on sample ${temp}. Pipeline terminated"  >> log.out
 	exit 1
 	fi
 done
